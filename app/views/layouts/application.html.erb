@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SLRPiyographer</title>
+    <title>SLR_piyographer</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,11 +10,14 @@
   </head>
 
   <body>
-    <div class="body">
-      <div class="container">
-        <%= yield %>
-      </div>
-    </div>
-  </body>
 
+    <%= yield %>
+
+    <footer class="footer">
+      <div>
+        <p>© SLR piyographer. ALL RIGHTS RESERVED</p>
+      </div>
+    </footer>
+
+  </body>
 </html>
