@@ -18,9 +18,14 @@ class Users::UsersController < ApplicationController
   end
 
   def confirm
+    @user = User.find(current_user.id)
   end
 
   def delete
+  	user = User.find(current_user.id)
+    user.status = false
+    user.save
+    redirect_to root_path
   end
 
   private
