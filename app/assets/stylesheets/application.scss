@@ -16,3 +16,19 @@
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+
+#image_btn {
+  display: none !important;
+}
+
+#image_view {
+  text-align: center;
+}
+
+.button-group {
+  margin-bottom: 15px;
+}
+
+.introduction {
+  line-height: 3em;
+}
