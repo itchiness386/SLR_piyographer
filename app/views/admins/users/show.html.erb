@@ -1,2 +1,35 @@
-<h1>Admins::Users#show</h1>
-<p>Find me in app/views/admins/users/show.html.erb</p>
+<%= render 'layouts/admins_header' %>
+
+<div class="body">
+  <div class="container">
+
+    <h3><%= @user.name %></h3>
+
+    <div class="row">
+	    <div class="col-4 text-center">
+	      <div id="profile_image">
+	        <%= attachment_image_tag @user, :profile_image, :fill, 250, 250, fallback: "no_image.jpg" %>
+	      </div>
+
+        <table class="table">
+          <tr>
+            <td>Follows Followers</td>
+          </tr>
+          <tr>
+            <td><%= @user.introduction %></td>
+          </tr>
+          <tr>
+            <td>カメラ情報</td>
+          </tr>
+        </table>
+
+        <%= link_to '編集', edit_admins_user_path(@user), class: "btn btn-outline-success btn-lg col-12" %>
+			</div>
+
+      <div class="col-8">
+				<!-- 投稿一覧-->
+      </div>
+     </div>
+
+  </div>
+</div>

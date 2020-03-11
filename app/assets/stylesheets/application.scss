@@ -16,3 +16,25 @@
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+#image_btn {
+  display: none !important;
+}
+
+#image_view {
+  text-align: center;
+}
+
+.button-group {
+  margin-bottom: 15px;
+}
+
+.introduction {
+  line-height: 3em;
+}
+
+#profile_image {
+	margin: 15px 0;
+}
