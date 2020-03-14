@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :users do
+    get 'cameras/index'
+    get 'cameras/edit'
+  end
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
@@ -21,6 +25,7 @@ Rails.application.routes.draw do
     get 'users/confirm' => 'users#confirm'
     patch 'users/delete' => 'users#delete'
   	resources :users, only: [:show, :edit, :update]
+  	resources :cameras, except: [:new, :show]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

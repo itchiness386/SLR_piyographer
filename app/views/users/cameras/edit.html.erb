@@ -1,0 +1,29 @@
+<%= render 'layouts/users_header' %>
+
+<div class="body">
+	<div class="container">
+
+		<%= form_for(@camera) do |f| %>
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <h4>カメラ情報登録</h4>
+            <table class="table">
+              <tr>
+                <th>メーカー名</th>
+                <td><%= f.text_field :manufacturer, class: "name col-6" %></td>
+              </tr>
+              <tr>
+                <th>機種名</th>
+                <td><%= f.text_field :modelname, class: "name col-12" %></td>
+              </tr>
+            </table>
+
+            <div class="actions">
+              <%= f.submit '保存', class: "btn btn-outline-success col-12" %>
+            </div>
+        </div>
+      </div>
+		<% end %>
+
+　</div>
+</div>
