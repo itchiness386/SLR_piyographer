@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  namespace :users do
-    get 'cameras/index'
-    get 'cameras/edit'
-  end
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
@@ -16,6 +12,7 @@ Rails.application.routes.draw do
   namespace :admins do
     root 'home#top'
   	resources :users, only: [:index, :show, :edit, :update]
+  	resources :photos, except: [:new, :create, :destroy]
   end
   scope module: :users do
     root 'home#top'
@@ -26,6 +23,7 @@ Rails.application.routes.draw do
     patch 'users/delete' => 'users#delete'
   	resources :users, only: [:show, :edit, :update]
   	resources :cameras, except: [:new, :show]
+  	resources :photos
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
