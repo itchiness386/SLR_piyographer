@@ -1,2 +1,52 @@
-<h1>Users::Cameras#index</h1>
-<p>Find me in app/views/users/cameras/index.html.erb</p>
+<%= render 'layouts/users_header' %>
+
+<div class="body">
+	<div class="container">
+
+		<%= form_for(@camera) do |f| %>
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <h4>カメラ情報登録</h4>
+            <table class="table">
+              <tr>
+                <th>メーカー名</th>
+                <td><%= f.text_field :manufacturer, class: "name col-6" %></td>
+              </tr>
+              <tr>
+                <th>機種名</th>
+                <td><%= f.text_field :modelname, class: "name col-12" %></td>
+              </tr>
+            </table>
+
+            <div class="actions">
+              <%= f.submit '登録', class: "btn btn-outline-success col-12" %>
+            </div>
+        </div>
+      </div>
+		<% end %>
+
+    <div class="row justify-content-center camera-index">
+      <div class="col-8">
+        <h4>登録カメラ一覧</h4>
+  			<table class="table">
+					<tr class="active">
+						<th>メーカー名</th>
+						<th>機種名</th>
+						<th></th>
+					</tr>
+					<% @cameras.each do |camera| %>
+  					<tr>
+  						<td><%= camera.manufacturer %></td>
+  						<td><%= camera.modelname %></td>
+  						<td>
+                <%= link_to "編集", edit_camera_path(camera), class: "btn btn-outline-success col-4 offset-1" %>
+                <%= link_to "削除", camera_path(camera), method: :delete, class: "btn btn-outline-danger col-4 offset-2" %>
+              </td>
+  					</tr>
+					<% end %>
+  			</table>
+  		</div>
+  	</div>
+
+	</div>
+</div>
