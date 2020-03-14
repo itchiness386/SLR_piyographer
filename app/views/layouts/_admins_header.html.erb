@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#fff462;">
 
-  <a class="navbar-brand" href="#">SLR piyographer</a>
+  <a class="navbar-brand" href="/admins">SLR piyographer</a>
   <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -11,16 +11,16 @@
       <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
     </form>
 
-    <div class="collapse navbar-collapse" id="Navber">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">ユーザ一覧</a>
+    <div class="collapse navbar-collapse justify-content-end" id="Navber">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to 'ユーザ一覧', admins_users_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">投稿一覧</a>
         </li>
         <li class="nav-item">
-          <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "dropdown-item" %>
+          <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link" %>
         </li>
       </ul>
     </div>

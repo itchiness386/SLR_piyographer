@@ -19,6 +19,18 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+body {
+  font-size: 14px;
+  background-image: url(background-image.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.body {
+  margin: 30px 0;
+}
+
 #image_btn {
   display: none !important;
 }
@@ -37,4 +49,30 @@
 
 #profile_image {
 	margin: 15px 0;
+}
+
+.rounded-circle {
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  margin: 2px 0 0 5px;
+  border-radius: 25px;
+  box-shadow: 2px 2px 4px gray;
+}
+
+body,
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.footer {
+  margin-top: auto;
+  font-family: Trebuchet MS;
+  font-size: 15px;
+  color: #FFFFFF;
+  background-color: #d1de4c;
+  text-align: center;
+  padding: 40px 0;
 }

@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#fff462;">
 
-  <a class="navbar-brand" href="#">SLR piyographer</a>
+  <a class="navbar-brand" href="/">SLR piyographer</a>
   <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -11,39 +11,45 @@
       <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
     </form>
 
-    <div class="collapse navbar-collapse" id="Navber">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">ランキング</a>
+    <div class="collapse navbar-collapse justify-content-end" id="Navber">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to 'ランキング', ranking_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">用語集</a>
+          <%= link_to '用語集', glossary_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= current_user.name %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">マイページ</a>
+            <%= link_to 'マイページ', user_path(current_user), class: "dropdown-item" %>
             <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
+        </li>
+        <li class="nav-item">
+          <%= attachment_image_tag current_user, :profile_image, :fill, 35, 35, fallback: "no_image.jpg", size:'35x35' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to '＋', root_path, class: "btn btn-light rounded-circle p-0" %>
         </li>
       </ul>
     </div>
   <% else %>
-    <div class="collapse navbar-collapse" id="Navber">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">ホーム</a>
+    <div class="collapse navbar-collapse justify-content-end" id="Navber">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to 'ホーム', root_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">ご利用方法</a>
+          <%= link_to 'ご利用方法', about_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'ログイン', new_user_session_path %>
+          <%= link_to 'ログイン', new_user_session_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to '会員登録', new_user_registration_path %>
+          <%= link_to '会員登録', new_user_registration_path, class: "nav-link" %>
         </li>
       </ul>
     </div>
