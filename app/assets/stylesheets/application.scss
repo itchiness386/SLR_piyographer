@@ -31,6 +31,26 @@ body {
   margin: 30px 0;
 }
 
+.table {
+  background-color: rgba(255,255,255,0.8);
+}
+
+.btn-outline-success {
+  background-color: #ddffbc;
+}
+
+.btn-outline-danger {
+  background-color: #ffbcbc;
+}
+
+.btn-outline-warning {
+  background-color: #ffffbc;
+}
+
+.btn-outline-primary{
+  background-color: #bcddff;
+}
+
 #image_btn {
   display: none !important;
 }
@@ -49,6 +69,10 @@ body {
 
 #profile_image {
 	margin: 15px 0;
+}
+
+#confirm-text {
+  height: 70vh;
 }
 
 .rounded-circle {

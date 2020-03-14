@@ -9,7 +9,7 @@
           <div id="image_view">
             <%= attachment_image_tag @user, :profile_image, :fill, 250, 250, fallback: "no_image.jpg", id:"orgin_img" %>
           </div>
-          <label for="image_btn" class="btn btn-outline-success btn-lg col-8 offset-2">画像選択
+          <label for="image_btn" class="btn btn-outline-success col-8 offset-2">画像選択
             <%= f.attachment_field :profile_image, id: "image_btn" %>
           </label>
   			</div>
@@ -17,9 +17,9 @@
         <div class="col-8">
 
           <div class="button-group">
-            <button type="button" class="btn btn-outline-warning btn-lg col-3">カメラ情報変更</button>
-            <button type="button" class="btn btn-outline-warning btn-lg col-3 offset-1">パスワード変更</button>
-            <button type="button" class="btn btn-outline-primary btn-lg col-3 offset-1">退会する</button>
+            <button type="button" class="btn btn-outline-warning col-3">カメラ情報変更</button>
+            <button type="button" class="btn btn-outline-warning col-3 offset-1">パスワード変更</button>
+            <button type="button" class="btn btn-outline-primary col-3 offset-1">退会する</button>
           </div>
 
           <table class="table">
@@ -38,7 +38,7 @@
           </table>
 
   				<div class="actions">
-  					<%= f.submit '保存', class: "btn btn-outline-success btn-lg col-12" %>
+  					<%= f.submit '保存', class: "btn btn-outline-success col-12" %>
   				</div>
         </div>
       </div>
