@@ -8,7 +8,7 @@
     <div class="row">
 	    <div class="col-4 text-center">
 	      <div id="profile_image">
-	        <%= attachment_image_tag @user, :profile_image, :fill, 250, 250, fallback: "no_image.jpg" %>
+	        <%= attachment_image_tag @user, :profile_image, :fill, 250, 250, fallback: "no_image_user.jpg" %>
 	      </div>
 
         <table class="table">
@@ -23,11 +23,15 @@
           </tr>
         </table>
 
-        <%= link_to '編集', edit_admins_user_path(@user), class: "btn btn-outline-success btn-lg col-12" %>
+        <%= link_to '編集', edit_admins_user_path(@user), class: "btn btn-outline-success col-12" %>
 			</div>
 
       <div class="col-8">
-				<!-- 投稿一覧-->
+        <% @photos.each do |photo| %>
+          <%= link_to admins_photo_path(photo) do %>
+            <%= attachment_image_tag photo, :image, :fill, 165, 110, fallback: "no_image_photo.jpg", class: "photo-index" %>
+          <% end %>
+        <% end %>
       </div>
      </div>
 

@@ -3,18 +3,18 @@
 <div class="body">
   <div class="container">
 
-  	<%= form_for(@user) do |f| %>
+    <%= form_for(@user) do |f| %>
       <div class="row">
-        <div class="col-4">
+        <div class="col-3">
           <div id="image_view">
-            <%= attachment_image_tag @user, :profile_image, :fill, 250, 250, fallback: "no_image.jpg", id:"orgin_img" %>
+            <%= attachment_image_tag @user, :profile_image, :fill, 250, 250, fallback: "no_image_user.jpg", id:"orgin_img" %>
           </div>
           <label for="image_btn" class="btn btn-outline-success btn-lg col-8 offset-2">画像選択
             <%= f.attachment_field :profile_image, id: "image_btn" %>
           </label>
-  			</div>
+        </div>
 
-        <div class="col-8">
+        <div class="col-9">
 
           <div class="button-group">
             <button type="button" class="btn btn-outline-warning btn-lg col-3">カメラ情報変更</button>
@@ -37,12 +37,12 @@
             </tr>
           </table>
 
-  				<div class="actions">
-  					<%= f.submit '保存', class: "btn btn-outline-success btn-lg col-12" %>
-  				</div>
+          <div class="actions">
+            <%= f.submit '保存', class: "btn btn-outline-success btn-lg col-12" %>
+          </div>
         </div>
       </div>
-  	<% end %>
+    <% end %>
 
   </div>
 </div>

@@ -1,0 +1,65 @@
+<%= render 'layouts/admins_header' %>
+
+<div class="body">
+  <div class="container">
+
+  	<%= form_for [:admins, @photo] do |f| %>
+      <div class="row">
+	      <div class="col-3">
+	        <div id="photo_image">
+	          <%= attachment_image_tag @photo, :image, :fill, 270, 180, fallback: "no_image_photo.jpg" %>
+	        </div>
+	      </div>
+
+	      <div class="col-8">
+	        <table class="table">
+	          <tr>
+	            <th>日付</th>
+	            <td><%= @photo.date %></td>
+	          </tr>
+	          <tr>
+	            <th>カメラ</th>
+	            <td><%= @photo.camera %></td>
+	          </tr>
+	          <tr>
+	            <th>レンズ</th>
+	            <td><%= @photo.lens %></td>
+	          </tr>
+	          <tr>
+	            <th>絞り</th>
+	            <td><%= @photo.aperture %></td>
+	          </tr>
+	          <tr>
+	            <th>シャッタースピード</th>
+	            <td><%= @photo.ss %></td>
+	          </tr>
+	          <tr>
+	            <th>ISO</th>
+	            <td><%= @photo.iso %></td>
+	          </tr>
+	          <tr>
+	            <th>ホワイトバランス</th>
+	            <td><%= @photo.wb %></td>
+	          </tr>
+	          <tr>
+	            <th>ピント</th>
+	            <td><%= @photo.focus %></td>
+	          </tr>
+			      <tr>
+			        <th>ステータス</th>
+			        <td>
+			          <label><%=f.radio_button :status, "true" %>有効</label>
+			          <label><%=f.radio_button :status, "false" %>無効</label>
+			        </td>
+			      </tr>
+		      </table>
+
+					<div class="actions">
+						<%= f.submit '保存', class: "btn btn-outline-success col-12" %>
+					</div>
+			  </div>
+			</div>
+  	<% end %>
+
+  </div>
+</div>

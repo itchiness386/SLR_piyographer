@@ -31,6 +31,26 @@ body {
   margin: 30px 0;
 }
 
+.table {
+  background-color: rgba(255,255,255,0.8);
+}
+
+.btn-outline-success {
+  background-color: #ddffbc;
+}
+
+.btn-outline-danger {
+  background-color: #ffbcbc;
+}
+
+.btn-outline-warning {
+  background-color: #ffffbc;
+}
+
+.btn-outline-primary{
+  background-color: #bcddff;
+}
+
 #image_btn {
   display: none !important;
 }
@@ -51,6 +71,10 @@ body {
 	margin: 15px 0;
 }
 
+#confirm-text {
+  height: 70vh;
+}
+
 .rounded-circle {
   font-size: 20px;
   width: 30px;
@@ -62,6 +86,10 @@ body {
 
 .camera-index {
   margin-top: 50px;
+}
+
+.photo-index {
+  margin: 5px 5px 5px 5px;
 }
 
 body,

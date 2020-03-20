@@ -29,21 +29,25 @@
       <div class="col-8">
         <h4>登録カメラ一覧</h4>
   			<table class="table">
-					<tr class="active">
-						<th>メーカー名</th>
-						<th>機種名</th>
-						<th></th>
-					</tr>
-					<% @cameras.each do |camera| %>
+          <thead class="thead-light">
   					<tr>
-  						<td><%= camera.manufacturer %></td>
-  						<td><%= camera.modelname %></td>
-  						<td>
-                <%= link_to "編集", edit_camera_path(camera), class: "btn btn-outline-success col-4 offset-1" %>
-                <%= link_to "削除", camera_path(camera), method: :delete, class: "btn btn-outline-danger col-4 offset-2" %>
-              </td>
+  						<th>メーカー名</th>
+  						<th>機種名</th>
+  						<th></th>
   					</tr>
-					<% end %>
+          </thead>
+          <tbody>
+  					<% @cameras.each do |camera| %>
+    					<tr>
+    						<td><%= camera.manufacturer %></td>
+    						<td><%= camera.modelname %></td>
+    						<td>
+                  <%= link_to "編集", edit_camera_path(camera), class: "btn btn-outline-success btn-sm col-4 offset-1" %>
+                  <%= link_to "削除", camera_path(camera), method: :delete, class: "btn btn-outline-danger btn-sm col-4 offset-2" %>
+                </td>
+    					</tr>
+  					<% end %>
+          </tbody>
   			</table>
   		</div>
   	</div>

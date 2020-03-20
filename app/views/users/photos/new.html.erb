@@ -1,0 +1,104 @@
+<%= render 'layouts/users_header' %>
+
+<div class="body">
+	<div class="container">
+
+    <%= form_for(@photo) do |f| %>
+      <div class="row">
+        <div class="col-3">
+          <div id="image_view"></div>
+            <%= attachment_image_tag @photo, :image, :fill, 300, 200, fallback: "no_image_photo.jpg", id: "orgin_img" %>
+          <label for="image_btn" class="btn btn-outline-success col-12">画像選択
+            <%= f.attachment_field :image, id: "image_btn" %>
+          </label>
+        </div>
+
+        <div class="col-9">
+          <table class="table">
+            <tr>
+              <th>日付</th>
+              <td><%= f.date_field :date, class: "col-12" %></td>
+            </tr>
+            <tr>
+              <th>カメラ</th>
+              <td>
+                <div>
+                  <%= radio_button_tag :radio, "1" %> <%= f.label :登録済みのカメラから選択 %><br>
+                  <%= select_tag 'camera', options_from_collection_for_select(@cameras, :camera_name, :camera_name), class: "col-12" %>
+                </div>
+                <div>
+                  <%= radio_button_tag :radio, "2" %> <%= f.label :新しいカメラ %>
+                  <%= f.text_field :camera, placeholder: "Canon EOS kiss X8i", class: "col-12" %>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>レンズ</th>
+              <td><%= f.text_field :lens, placeholder: "望遠レンズ", class: "col-12" %></td>
+            </tr>
+            <tr>
+              <th>絞り</th>
+              <td><%= f.text_field :aperture, placeholder: "f8", class: "col-12" %></td>
+            </tr>
+            <tr>
+              <th>シャッタースピード</th>
+              <td><%= f.text_field :ss, placeholder: "1/250", class: "col-12" %></td>
+            </tr>
+            <tr>
+              <th>ISO</th>
+              <td><%= f.text_field :iso, placeholder: "100", class: "col-12" %></td>
+            </tr>
+            <tr>
+              <th>ホワイトバランス</th>
+              <td><%= f.text_field :wb, placeholder: "昼光", class: "col-12" %></td>
+            </tr>
+            <tr>
+              <th>ピント</th>
+              <td><%= f.text_field :focus, placeholder: "マニュアル", class: "col-12" %></td>
+            </tr>
+          </table>
+
+          <div class="actions">
+            <%= f.submit '投稿', class: "btn btn-outline-success col-12" %>
+          </div>
+        </div>
+      </div>
+		<% end %>
+
+　</div>
+</div>
+
+<script>
+$(function() {
+    $('#image_btn').on('change', function(e) {
+        // 1枚だけ表示する
+        var file = e.target.files[0];
+        console.log(file);
+        if ( !file ){
+            $('#image_view').html("");
+            $('#orgin_img').show();
+            return;
+        }
+        // ファイルリーダー作成
+        var fileReader = new FileReader();
+        if (file.type == 'video/mp4') {
+            var dom = $("<video>");
+        }
+        else{
+            var dom = $("<img>");
+        }
+        dom.attr('style','width:100%');
+        fileReader.onload = function() {
+            // Data URIを取得
+            console.log(this.result);
+            var dataUri = this.result;
+            dom.attr('src', dataUri);
+            // img要素に表示
+            $('#image_view').html(dom);
+        }
+        // ファイルをData URIとして読み込む
+        fileReader.readAsDataURL(file);
+        $('#orgin_img').hide();
+    });
+});
+</script>

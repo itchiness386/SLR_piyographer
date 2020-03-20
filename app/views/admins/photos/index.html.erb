@@ -1,0 +1,19 @@
+<%= render 'layouts/admins_header' %>
+
+<div class="body">
+  <div class="container">
+
+    <h3>投稿一覧</h3>
+
+    <div class="row">
+      <div class="col-12">
+        <% @photos.each do |photo| %>
+	        <%= link_to admins_photo_path(photo) do %>
+	          <%= attachment_image_tag photo, :image, :fill, 195, 130, fallback: "no_image_photo.jpg", class: "photo-index" %>
+	        <% end %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>

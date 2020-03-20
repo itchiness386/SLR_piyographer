@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_14_061604) do
+ActiveRecord::Schema.define(version: 2020_03_14_115524) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,6 +28,22 @@ ActiveRecord::Schema.define(version: 2020_03_14_061604) do
     t.integer "user_id"
     t.string "manufacturer"
     t.string "modelname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "image_id"
+    t.date "date"
+    t.string "camera"
+    t.string "lens"
+    t.string "aperture"
+    t.string "ss"
+    t.string "iso"
+    t.string "wb"
+    t.string "focus"
+    t.boolean "status", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

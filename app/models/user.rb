@@ -7,6 +7,7 @@ class User < ApplicationRecord
   attachment :profile_image
 
   has_many :cameras, dependent: :destroy
+  has_many :photos, dependent: :destroy
 
   def remember_me
     true
