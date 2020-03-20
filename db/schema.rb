@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_03_14_115524) do
     t.string "iso"
     t.string "wb"
     t.string "focus"
-    t.boolean "status"
+    t.boolean "status", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

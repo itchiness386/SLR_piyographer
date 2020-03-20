@@ -11,7 +11,7 @@ class CreatePhotos < ActiveRecord::Migration[5.2]
       t.string :iso
       t.string :wb
       t.string :focus
-      t.boolean :status
+      t.boolean :status, default: true
 
       t.timestamps
     end
