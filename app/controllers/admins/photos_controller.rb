@@ -1,5 +1,7 @@
 class Admins::PhotosController < ApplicationController
+
   def index
+  	@photos = Photo.order(created_at: :desc)
   end
 
   def show

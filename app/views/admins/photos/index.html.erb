@@ -1,2 +1,19 @@
-<h1>Admins::Photos#index</h1>
-<p>Find me in app/views/admins/photos/index.html.erb</p>
+<%= render 'layouts/admins_header' %>
+
+<div class="body">
+  <div class="container">
+
+    <h3>投稿一覧</h3>
+
+    <div class="row">
+      <div class="col-12">
+        <% @photos.each do |photo| %>
+	        <%= link_to admins_photo_path(photo) do %>
+	          <%= attachment_image_tag photo, :image, :fill, 210, 140, fallback: "no_image_photo.jpg", class: "photo_index" %>
+	        <% end %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>
