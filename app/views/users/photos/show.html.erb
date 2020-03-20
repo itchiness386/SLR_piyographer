@@ -69,6 +69,7 @@
         </table>
 
         <%= link_to '編集', edit_photo_path(@photo), class: "btn btn-outline-success btn-sm col-12" %>
+        <%= link_to '削除', photo_path(@photo), method: :delete, class: "btn btn-outline-danger btn-sm col-12" %>
       </div>
     </div>
 
