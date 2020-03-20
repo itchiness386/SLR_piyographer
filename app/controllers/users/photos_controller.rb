@@ -30,9 +30,24 @@ class Users::PhotosController < ApplicationController
   end
 
   def edit
+    @photo = Photo.find(params[:id])
+    @cameras = Camera.where(user_id: current_user.id)
   end
 
   def update
+    photo = Photo.find(params[:id])
+
+    if params[:radio] == "1"
+      params[:photo][:camera] = params[:camera]
+    elsif params[:radio] == "2"
+      params[:photo][:camera] = params[:new_camera]
+    end
+
+    if photo.update(photo_params)
+      redirect_to photo_path(photo)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
