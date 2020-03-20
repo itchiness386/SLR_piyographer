@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     patch 'users/delete' => 'users#delete'
   	resources :users, only: [:show, :edit, :update]
   	resources :cameras, except: [:new, :show]
-  	resources :photos
+  	resources :photos, except: [:index]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

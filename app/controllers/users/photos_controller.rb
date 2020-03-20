@@ -1,8 +1,5 @@
 class Users::PhotosController < ApplicationController
 
-  def index
-  end
-
   def new
     @photo = Photo.new
     @cameras = Camera.where(user_id: current_user.id)
