@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-3">
           <div id="image_view"></div>
-            <%= attachment_image_tag @photo, :image, :fill, 250, 250, fallback: "no_image_photo.jpg", id: "orgin_img" %>
+            <%= attachment_image_tag @photo, :image, :fill, 300, 200, fallback: "no_image_photo.jpg", id: "orgin_img" %>
           <label for="image_btn" class="btn btn-outline-success col-12">画像選択
             <%= f.attachment_field :image, id: "image_btn" %>
           </label>
