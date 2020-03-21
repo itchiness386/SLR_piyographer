@@ -19,7 +19,11 @@
             <td><%= @photo.user.introduction %></td>
           </tr>
           <tr>
-            <td>カメラ情報</td>
+            <td>
+              <% @photo.user.cameras.each do |camera| %>
+                <div><i class="fas fa-camera"></i> <%= camera.camera_name %></div>
+              <% end %>
+            </td>
           </tr>
         </table>
 

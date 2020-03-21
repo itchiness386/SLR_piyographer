@@ -19,11 +19,15 @@
             <td><%= @photo.user.introduction %></td>
           </tr>
           <tr>
-            <td>カメラ情報</td>
+            <td>
+              <% @photo.user.cameras.each do |camera| %>
+                <div><i class="fas fa-camera"></i> <%= camera.camera_name %></div>
+              <% end %>
+            </td>
           </tr>
         </table>
 
-        <%= link_to '編集', edit_user_path(@photo.user), class: "btn btn-outline-success col-12" %>
+        <%= link_to '編集', edit_admins_user_path(@photo.user), class: "btn btn-outline-success col-12" %>
       </div>
 
       <div class="col-3">
