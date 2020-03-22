@@ -30,50 +30,91 @@
         <%= link_to '編集', edit_user_path(@photo.user), class: "btn btn-outline-success col-12" %>
       </div>
 
-      <div class="col-3">
-        <div id="photo_image">
-          <%= attachment_image_tag @photo, :image, :fill, 270, 180, fallback: "no_image_photo.jpg" %>
+      <div class="col-8">
+        <div class="row">
+          <div class="col-5">
+            <div id="photo_image">
+              <%= attachment_image_tag @photo, :image, :fill, 270, 180, fallback: "no_image_photo.jpg" %>
+            </div>
+            <br>
+            <%= link_to '編集', edit_photo_path(@photo), class: "btn btn-outline-success btn-sm col-4 offset-1" %>
+            <%= link_to '削除', photo_path(@photo), method: :delete, class: "btn btn-outline-danger btn-sm col-4 offset-1" %>
+          </div>
+
+          <div class="col-7">
+            <table class="table table-sm col-12">
+              <tr>
+                <th>日付</th>
+                <td><%= @photo.date %></td>
+              </tr>
+              <tr>
+                <th>カメラ</th>
+                <td><%= @photo.camera %></td>
+              </tr>
+              <tr>
+                <th>レンズ</th>
+                <td><%= @photo.lens %></td>
+              </tr>
+              <tr>
+                <th>絞り</th>
+                <td><%= @photo.aperture %></td>
+              </tr>
+              <tr>
+                <th>シャッタースピード</th>
+                <td><%= @photo.ss %></td>
+              </tr>
+              <tr>
+                <th>ISO</th>
+                <td><%= @photo.iso %></td>
+              </tr>
+              <tr>
+                <th>ホワイトバランス</th>
+                <td><%= @photo.wb %></td>
+              </tr>
+              <tr>
+                <th>ピント</th>
+                <td><%= @photo.focus %></td>
+              </tr>
+            </table>
+          </div>
         </div>
-      </div>
 
-      <div class="col-5">
-        <table class="table table-sm col-12">
-          <tr>
-            <th>日付</th>
-            <td><%= @photo.date %></td>
-          </tr>
-          <tr>
-            <th>カメラ</th>
-            <td><%= @photo.camera %></td>
-          </tr>
-          <tr>
-            <th>レンズ</th>
-            <td><%= @photo.lens %></td>
-          </tr>
-          <tr>
-            <th>絞り</th>
-            <td><%= @photo.aperture %></td>
-          </tr>
-          <tr>
-            <th>シャッタースピード</th>
-            <td><%= @photo.ss %></td>
-          </tr>
-          <tr>
-            <th>ISO</th>
-            <td><%= @photo.iso %></td>
-          </tr>
-          <tr>
-            <th>ホワイトバランス</th>
-            <td><%= @photo.wb %></td>
-          </tr>
-          <tr>
-            <th>ピント</th>
-            <td><%= @photo.focus %></td>
-          </tr>
-        </table>
+        <div class="row">
+          <div class="col-12">
+            <table class="table">
+              <% @photo.photo_comments.each do |photo_comment| %>
+                <tr>
+                  <td>
+                    <%= link_to user_path(photo_comment.user) do %>
+                      <%= attachment_image_tag  photo_comment.user, :profile_image, :fill, 35, 35, fallback: "no_image_user.jpg", size:'35x35' %>
+                    <% end %>
+                  </td>
+                  <td class="align-middle">
+                    <%= link_to photo_comment.user.name, user_path(photo_comment.user) %>
+                  </td>
+                  <td class="align-middle col"><%= photo_comment.comment %></td>
+                  <td class="align-middle"><%= photo_comment.created_at.strftime('%Y/%m/%d') %></td>
+                  <td>
+                    <% if photo_comment.user == current_user %>
+                      <%= link_to '×', photo_photo_comment_path(@photo, photo_comment), method: :delete, class: "btn btn-light btn-sm" %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
 
-        <%= link_to '編集', edit_photo_path(@photo), class: "btn btn-outline-success btn-sm col-12" %>
-        <%= link_to '削除', photo_path(@photo), method: :delete, class: "btn btn-outline-danger btn-sm col-12" %>
+            <%= form_for [@photo, @photo_comment] do |f| %>
+                <div class="row align-items-end">
+                    <div class="col-11">
+                      <%= f.text_area :comment, rows:'4', class: "form-control" %>
+                    </div>
+                    <%= f.button :type => "submit", class: "btn btn-light rounded-circle p-0" do %>
+                      <i class="far fa-paper-plane"></i>
+                    <% end %>
+                </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
 

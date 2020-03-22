@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :cameras, dependent: :destroy
   has_many :photos, dependent: :destroy
+  has_many :photo_comments, dependent: :destroy
 
   def remember_me
     true

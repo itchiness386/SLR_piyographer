@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   namespace :admins do
     root 'home#top'
   	resources :users, only: [:index, :show, :edit, :update]
-  	resources :photos, except: [:new, :create, :destroy]
+  	resources :photos, except: [:new, :create, :destroy] do
+      resources :photo_comments, only: [:destroy]
+    end
   end
   scope module: :users do
     root 'home#top'
@@ -23,7 +25,9 @@ Rails.application.routes.draw do
     patch 'users/delete' => 'users#delete'
   	resources :users, only: [:show, :edit, :update]
   	resources :cameras, except: [:new, :show]
-  	resources :photos, except: [:index]
+  	resources :photos, except: [:index] do
+      resources :photo_comments, only: [:create, :destroy]
+    end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
