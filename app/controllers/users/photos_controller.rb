@@ -24,6 +24,7 @@ class Users::PhotosController < ApplicationController
 
   def show
   	@photo = Photo.find(params[:id])
+    @photo_comment = PhotoComment.new
   end
 
   def edit
