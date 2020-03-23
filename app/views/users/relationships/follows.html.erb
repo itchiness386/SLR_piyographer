@@ -1,0 +1,79 @@
+<%= render 'layouts/users_header' %>
+
+<div class="body">
+  <div class="container">
+
+    <h3><%= @user.name %></h3>
+
+    <div class="row">
+	    <div class="col-4 text-center">
+	      <div id="profile_image">
+	        <%= attachment_image_tag @user, :profile_image, :fill, 250, 250, fallback: "no_image_user.jpg" %>
+	      </div>
+
+        <table class="table">
+          <tr>
+            <td>
+              <div class="d-inline col-6">Follows <%= link_to @user.follower.count, follows_path(@user) %></div>
+              <div class="d-inline col-6">Followers <%= link_to @user.followed.count, followers_path(@user) %></div>
+            </td>
+          </tr>
+          <tr>
+            <td><%= @user.introduction %></td>
+          </tr>
+          <tr>
+            <td>
+              <% @user.cameras.each do |camera| %>
+                <div><i class="fas fa-camera"></i> <%= camera.camera_name %></div>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+
+        <% if @user == current_user %>
+          <%= link_to '編集', edit_user_path(@user), class: "btn btn-outline-success col-12" %>
+        <% else %>
+          <% if current_user.following?(@user) %>
+            <%= link_to 'フォローを外す', unfollow_path(@user.id), method: :POST, class: "btn btn-outline-primary col-12" %>
+          <% else %>
+            <%= link_to 'フォローする', follow_path(@user.id), method: :POST, class: "btn btn-outline-success col-12" %>
+          <% end %>
+        <% end %>
+			</div>
+
+			<div class="col-8">
+				<h2>フォロー一覧</h2>
+				<table class="table">
+					<thead class="thead-light">
+						<tr>
+							<th colspan="2" style="width:30%">ユーザ名</th>
+							<th style="width:50%"></th>
+							<th style="width:20%"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @users.each do |user| %>
+						<tr>
+							<td>
+								<%= link_to user_path(user) do %>
+									<%= attachment_image_tag user, :profile_image, :fill, 35, 35, fallback: "no_image_user.jpg", size:'35x35' %>
+								<% end %>
+							</td>
+							<td class="align-middle">
+								<%= link_to user.name, user_path(user) %>
+							</td>
+							<td class="align-middle">
+								<%= truncate(user.introduction, length: 26) %>
+							</td>
+							<td>
+					      <%= link_to 'フォローを外す', unfollow_path(user.id), method: :POST, class: "btn btn-outline-primary btn-sm col-12" %>
+					    </td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+</div>
