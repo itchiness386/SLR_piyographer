@@ -23,6 +23,10 @@ Rails.application.routes.draw do
     get 'ranking' => 'home#ranking'
     get 'users/confirm' => 'users#confirm'
     patch 'users/delete' => 'users#delete'
+    post 'follow/:id' => 'relationships#follow', as: 'follow'
+    post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
+    get 'user/:id/follows' => 'relationships#follows', as: 'follows'
+    get 'user/:id/followers' => 'relationships#followers', as: 'followers'
   	resources :users, only: [:show, :edit, :update]
   	resources :cameras, except: [:new, :show]
   	resources :photos, except: [:index] do

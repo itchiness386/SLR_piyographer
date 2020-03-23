@@ -39,17 +39,45 @@
             <%= link_to 'フォローする', follow_path(@user.id), method: :POST, class: "btn btn-outline-success col-12" %>
           <% end %>
         <% end %>
-
 			</div>
 
-      <div class="col-8">
-        <% @photos.each do |photo| %>
-          <%= link_to photo_path(photo) do %>
-            <%= attachment_image_tag photo, :image, :fill, 165, 110, fallback: "no_image_photo.jpg", class: "photo-index" %>
-          <% end %>
-        <% end %>
-      </div>
-     </div>
+			<div class="col-8">
+				<h2>フォロワー一覧</h2>
+				<table class="table">
+					<thead class="thead-light">
+						<tr>
+							<th colspan="2" style="width:30%">ユーザ名</th>
+							<th style="width:50%"></th>
+							<th style="width:20%"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @users.each do |user| %>
+						<tr>
+							<td>
+								<%= link_to user_path(user) do %>
+									<%= attachment_image_tag user, :profile_image, :fill, 35, 35, fallback: "no_image_user.jpg", size:'35x35' %>
+								<% end %>
+							</td>
+							<td class="align-middle">
+								<%= link_to user.name, user_path(user) %>
+							</td>
+							<td class="align-middle">
+								<%= truncate(user.introduction, length: 26) %>
+							</td>
+							<td>
+			          <% if current_user.following?(user) %>
+			            <%= link_to 'フォローを外す', unfollow_path(user), method: :POST, class: "btn btn-outline-primary btn-sm col-12" %>
+			          <% else %>
+			            <%= link_to 'フォローする', follow_path(user), method: :POST, class: "btn btn-outline-success btn-sm col-12" %>
+			          <% end %>
+					    </td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
-  </div>
+	</div>
 </div>
