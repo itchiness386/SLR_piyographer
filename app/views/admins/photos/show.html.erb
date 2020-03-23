@@ -13,7 +13,10 @@
 
         <table class="table">
           <tr>
-            <td>Follows Followers</td>
+            <td>
+              <div class="d-inline col-6">Follows <%= @photo.user.follower.count %></div>
+              <div class="d-inline col-6">Followers <%= @photo.user.followed.count %></div>
+            </td>
           </tr>
           <tr>
             <td><%= @photo.user.introduction %></td>

@@ -13,7 +13,10 @@
 
         <table class="table">
           <tr>
-            <td>Follows Followers</td>
+            <td>
+              <div class="d-inline col-6">Follows <%= link_to @photo.user.follower.count, follows_path(@photo.user) %></div>
+              <div class="d-inline col-6">Followers <%= link_to @photo.user.followed.count, followers_path(@photo.user) %></div>
+            </td>
           </tr>
           <tr>
             <td><%= @photo.user.introduction %></td>
@@ -27,7 +30,16 @@
           </tr>
         </table>
 
-        <%= link_to '編集', edit_user_path(@photo.user), class: "btn btn-outline-success col-12" %>
+        <% if @photo.user == current_user %>
+          <%= link_to '編集', edit_user_path(@photo.user), class: "btn btn-outline-success col-12" %>
+        <% else %>
+          <% if current_user.following?(@photo.user) %>
+            <%= link_to 'フォローを外す', unfollow_path(@photo.user.id), method: :POST, class: "btn btn-outline-primary col-12" %>
+          <% else %>
+            <%= link_to 'フォローする', follow_path(@photo.user.id), method: :POST, class: "btn btn-outline-success col-12" %>
+          <% end %>
+        <% end %>
+
       </div>
 
       <div class="col-8">
