@@ -69,6 +69,7 @@ gem "refile-mini_magick"
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'dotenv-rails'
 gem 'ransack'
+gem 'impressionist'
 
 group :production do
   gem 'mysql2'
