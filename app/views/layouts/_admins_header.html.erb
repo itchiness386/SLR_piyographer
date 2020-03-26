@@ -6,10 +6,10 @@
   </button>
 
   <% if admin_signed_in? %>
-    <form class="form-inline my-2 my-lg-0">
-      <input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">
-      <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
-    </form>
+    <%= search_form_for @search, url: admins_results_path do |f| %>
+      <%= f.text_field :name_cont, placeholder: 'ユーザ名', class: "search-box" %>
+      <%= f.submit '検索', class: 'btn btn-outline-success btn-sm'%>
+    <% end %>
 
     <div class="collapse navbar-collapse justify-content-end" id="Navber">
       <ul class="navbar-nav">

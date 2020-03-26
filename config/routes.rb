@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   }
   namespace :admins do
     root 'home#top'
-    get 'searchs/index'
+    get 'results' => 'searchs#index'
   	resources :users, only: [:index, :show, :edit, :update]
   	resources :photos, except: [:new, :create, :destroy] do
       resources :photo_comments, only: [:destroy]
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
   scope module: :users do
     root 'home#top'
-    get 'searchs/index'
+    get 'results' => 'searchs#index'
     get 'about' => 'home#about'
     get 'glossary' => 'home#glossary'
     get 'ranking' => 'home#ranking'
