@@ -1,4 +1,83 @@
 <%= render 'layouts/users_header' %>
 
-<h1>Users::Home#ranking</h1>
-<p>Find me in app/views/users/home/ranking.html.erb</p>
+<div class="body">
+  <div class="container">
+
+      <h3>ランキング</h3>
+
+      <div class="row justify-content-center">
+        <div class="col-5">
+          <h4>ユーザ</h4>
+            <table class="table">
+              <thead class="thead-light">
+                <tr>
+                  <th class="text-center">順位</th>
+                  <th colspan="2">ユーザ名</th>
+                  <th class="text-center">アクセス数</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @pv_ranks.each.with_index(1) do |pv_rank, i| %>
+                  <tr>
+                    <td class="align-middle text-center" style="width:20%">
+                      <%= "#{i}" %>
+                    </td>
+                    <td class="align-middle" style="width:5%">
+                      <%= link_to user_path(pv_rank) do %>
+                        <%= attachment_image_tag pv_rank, :profile_image, :fill, 60, 60, fallback: "no_image_user.jpg", size:'60x60' %>
+                      <% end %>
+                    </td>
+                    <td class="align-middle" style="width:50%">
+                      <%= link_to pv_rank.name, user_path(pv_rank) %>
+                    </td>
+                    <td class="align-middle text-center" style="width:25%">
+                      <%= pv_rank.impressions_count %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+        </div>
+
+        <div class="col-5">
+          <h4>投稿</h4>
+            <table class="table">
+              <thead class="thead-light">
+                <tr>
+                  <th class="text-center">順位</th>
+                  <th>投稿</th>
+                  <th colspan="2">ユーザ名</th>
+                  <th class="text-center">いいね数</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @favo_ranks.each.with_index(1) do |favo_rank, i| %>
+                  <tr>
+                    <td class="align-middle text-center" style="width:20%">
+                      <%= "#{i}" %>
+                    </td>
+                    <td class="align-middle" style="width:20%">
+                      <%= link_to photo_path(favo_rank) do %>
+                        <%= attachment_image_tag favo_rank, :image, :fill, 90, 60, fallback: "no_image_photo.jpg" %>
+                      <% end %>
+                    </td>
+                    <td class="align-middle" style="width:5%">
+                      <%= link_to user_path(favo_rank.user) do %>
+                        <%= attachment_image_tag favo_rank.user, :profile_image, :fill, 35, 35, fallback: "no_image_user.jpg", size:'35x35' %>
+                      <% end %>
+                    </td>
+                    <td class="align-middle" style="width:30%">
+                      <%= link_to favo_rank.user.name, user_path(favo_rank.user) %>
+                    </td>
+                    <td class="align-middle text-center" style="width:25%">
+                      <%= favo_rank.favorites.count %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+  </div>
+</div>
