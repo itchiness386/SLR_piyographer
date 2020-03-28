@@ -43,7 +43,7 @@
     						<td><%= camera.modelname %></td>
     						<td>
                   <%= link_to "編集", edit_camera_path(camera), class: "btn btn-outline-success btn-sm col-4 offset-1" %>
-                  <%= link_to "削除", camera_path(camera), method: :delete, class: "btn btn-outline-danger btn-sm col-4 offset-2" %>
+                  <%= link_to "削除", camera_path(camera), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger btn-sm col-4 offset-2" %>
                 </td>
     					</tr>
   					<% end %>

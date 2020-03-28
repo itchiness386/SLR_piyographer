@@ -65,7 +65,7 @@
             <% if @photo.user == current_user %>
               <br>
               <%= link_to '編集', edit_photo_path(@photo), class: "btn btn-outline-success btn-sm col-5 offset-1" %>
-              <%= link_to '削除', photo_path(@photo), method: :delete, class: "btn btn-outline-danger btn-sm col-5" %>
+              <%= link_to '削除', photo_path(@photo), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger btn-sm col-5" %>
             <% end %>
           </div>
 
@@ -124,7 +124,7 @@
                   <td class="align-middle"><%= photo_comment.created_at.strftime('%Y/%m/%d') %></td>
                   <td>
                     <% if photo_comment.user == current_user %>
-                      <%= link_to '×', photo_photo_comment_path(@photo, photo_comment), method: :delete, class: "btn btn-light btn-sm" %>
+                      <%= link_to '×', photo_photo_comment_path(@photo, photo_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-light btn-sm" %>
                     <% end %>
                   </td>
                 </tr>
