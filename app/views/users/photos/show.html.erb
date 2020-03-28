@@ -109,6 +109,20 @@
 
         <div class="row">
           <div class="col-12">
+
+            <% if @comment.errors.any? %>
+              <div id="error_explanation">
+                <p><%= @comment.errors.count %> 件のエラーがあります</p>
+                <ul>
+                  <% @comment.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% else %>
+              <p id="success_explanation"><%= flash[:notice] %></p>
+            <% end %>
+
             <table class="table">
               <% @photo.photo_comments.each do |photo_comment| %>
                 <tr>
@@ -131,15 +145,15 @@
               <% end %>
             </table>
 
-            <%= form_for [@photo, @photo_comment] do |f| %>
-                <div class="row align-items-end">
-                    <div class="col-11">
-                      <%= f.text_area :comment, rows:'4', class: "form-control" %>
-                    </div>
-                    <%= f.button :type => "submit", class: "btn btn-light rounded-circle p-0" do %>
-                      <i class="far fa-paper-plane"></i>
-                    <% end %>
+            <%= form_for [@photo, @comment] do |f| %>
+              <div class="row align-items-end">
+                <div class="col-11">
+                  <%= f.text_area :comment, rows:'4', class: "form-control" %>
                 </div>
+                <%= f.button :type => "submit", class: "btn btn-light rounded-circle p-0" do %>
+                  <i class="far fa-paper-plane"></i>
+                <% end %>
+              </div>
             <% end %>
           </div>
         </div>

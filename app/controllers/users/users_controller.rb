@@ -14,9 +14,10 @@ class Users::UsersController < ApplicationController
   end
 
   def update
-  	user = User.find(params[:id])
-    if user.update(user_params)
-      redirect_to user_path(user)
+  	@user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to user_path(@user)
+      flash[:notice] = "ユーザ情報を保存しました"
     else
       render 'edit'
     end

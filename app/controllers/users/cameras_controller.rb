@@ -9,13 +9,13 @@ class Users::CamerasController < ApplicationController
   end
 
   def create
-  	camera = Camera.new(camera_params)
-  	camera.user_id = current_user.id
-    if camera.save
+  	@camera = Camera.new(camera_params)
+  	@camera.user_id = current_user.id
+    if @camera.save
       redirect_to cameras_path
+      flash[:notice] = "カメラを追加しました"
     else
       @cameras = Camera.where(user_id: current_user.id)
-      @camera = Camera.new(camera_params)
       render 'index'
     end
   end
@@ -25,9 +25,10 @@ class Users::CamerasController < ApplicationController
   end
 
   def update
-  	camera = Camera.find(params[:id])
-    if camera.update(camera_params)
+  	@camera = Camera.find(params[:id])
+    if @camera.update(camera_params)
       redirect_to cameras_path
+      flash[:notice] = "カメラ情報を変更しました"
     else
       render 'edit'
     end

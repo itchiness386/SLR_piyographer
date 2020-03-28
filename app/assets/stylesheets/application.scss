@@ -60,6 +60,18 @@ h3 {
   border-radius: 6px;
 }
 
+#error_explanation {
+  color: #ff616b;
+}
+
+#error_explanation p {
+  margin-bottom: 0;
+}
+
+#success_explanation {
+  color: #28a745;
+}
+
 #image_btn {
   display: none !important;
 }

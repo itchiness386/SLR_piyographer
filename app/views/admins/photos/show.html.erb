@@ -87,6 +87,9 @@
 
         <div class="row">
           <div class="col-12">
+
+            <p id="success_explanation"><%= flash[:notice] %></p>
+
             <table class="table">
               <% @photo.photo_comments.each do |photo_comment| %>
                 <tr>
