@@ -1,7 +1,7 @@
 class Users::CamerasController < ApplicationController
 
   def index
-  	@cameras = Camera.all
+  	@cameras = Camera.where(user_id: current_user.id)
   	@camera = Camera.new
   end
 
