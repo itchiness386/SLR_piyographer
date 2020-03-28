@@ -1,5 +1,7 @@
 class Users::HomeController < ApplicationController
 
+  before_action :authenticate_user!, only: [:glossary, :ranking]
+
   def top
   end
 

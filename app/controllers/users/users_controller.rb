@@ -1,5 +1,8 @@
 class Users::UsersController < ApplicationController
 
+  before_action :authenticate_user!
+  before_action :corrent_user, only: [:edit, :update, :confirm, :delete]
+
   def show
     @user = User.find(params[:id])
     impressionist(@user, nil)
@@ -34,6 +37,11 @@ class Users::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :name, :profile_image, :introduction, :status)
+  end
+
+  def corrent_user
+    @user = User.find(params[:id])
+    redirect_to user_path(current_user) unless @user == current_user
   end
 
 end

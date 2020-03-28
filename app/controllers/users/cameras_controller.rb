@@ -1,5 +1,8 @@
 class Users::CamerasController < ApplicationController
 
+  before_action :authenticate_user!
+  before_action :corrent_user, only: [:edit, :update, :destroy]
+
   def index
   	@cameras = Camera.where(user_id: current_user.id)
   	@camera = Camera.new
@@ -39,6 +42,11 @@ class Users::CamerasController < ApplicationController
 
   def camera_params
   params.require(:camera).permit(:user_id, :manufacturer, :modelname)
+  end
+
+  def corrent_user
+    @camera = Camera.find(params[:id])
+    redirect_to cameras_path unless @camera.user_id == current_user.id
   end
 
 end

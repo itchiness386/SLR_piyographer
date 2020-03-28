@@ -1,5 +1,8 @@
 class Users::PhotosController < ApplicationController
 
+  before_action :authenticate_user!
+  before_action :corrent_user, only: [:edit, :update, :destroy]
+
   def new
     @photo = Photo.new
     @cameras = Camera.where(user_id: current_user.id)
@@ -58,6 +61,11 @@ class Users::PhotosController < ApplicationController
 
   def photo_params
   	params.require(:photo).permit(:user_id, :image, :date, :camera, :lens, :aperture, :ss, :iso, :wb, :focus, :status)
+  end
+
+  def corrent_user
+    @photo = Photo.find(params[:id])
+    redirect_to user_path(current_user) unless @photo.user_id == current_user.id
   end
 
 end

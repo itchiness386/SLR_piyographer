@@ -1,5 +1,7 @@
 class Admins::PhotosController < ApplicationController
 
+  before_action :authenticate_admin!
+
   def index
   	@photos = Photo.order(created_at: :desc)
   end
