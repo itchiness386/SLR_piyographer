@@ -3,6 +3,29 @@
 <div class="body">
 	<div class="container">
 
+    <% if flash[:notice] %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= flash[:notice] %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
+
+    <% if @comment.errors.any? %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong><%= @comment.errors.count %> 件のエラーがあります</strong>
+        <ul>
+          <% @comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
+
     <h3><%= @photo.user.name %></h3>
 
     <div class="row">
@@ -109,19 +132,6 @@
 
         <div class="row">
           <div class="col-12">
-
-            <% if @comment.errors.any? %>
-              <div id="error_explanation">
-                <p><%= @comment.errors.count %> 件のエラーがあります</p>
-                <ul>
-                  <% @comment.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                  <% end %>
-                </ul>
-              </div>
-            <% else %>
-              <p id="success_explanation"><%= flash[:notice] %></p>
-            <% end %>
 
             <table class="table">
               <% @photo.photo_comments.each do |photo_comment| %>

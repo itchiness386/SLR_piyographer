@@ -3,6 +3,15 @@
 <div class="body">
 	<div class="container">
 
+    <% if flash[:notice] %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= flash[:notice] %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
+
     <h3><%= @photo.user.name %></h3>
 
     <div class="row">
@@ -87,9 +96,6 @@
 
         <div class="row">
           <div class="col-12">
-
-            <p id="success_explanation"><%= flash[:notice] %></p>
-
             <table class="table">
               <% @photo.photo_comments.each do |photo_comment| %>
                 <tr>

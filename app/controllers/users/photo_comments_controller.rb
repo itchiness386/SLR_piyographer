@@ -20,6 +20,7 @@ class Users::PhotoCommentsController < ApplicationController
     comment = PhotoComment.find(params[:id])
     comment.destroy
     redirect_to photo_path(photo)
+    flash[:notice] = "コメントを削除しました"
   end
 
 	private
