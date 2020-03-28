@@ -14,7 +14,8 @@ class Users::CamerasController < ApplicationController
     if camera.save
       redirect_to cameras_path
     else
-      cameras = Camera.all
+      @cameras = Camera.where(user_id: current_user.id)
+      @camera = Camera.new(camera_params)
       render 'index'
     end
   end

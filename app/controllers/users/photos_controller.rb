@@ -21,6 +21,8 @@ class Users::PhotosController < ApplicationController
     if photo.save
       redirect_to photo_path(photo)
     else
+      @photo = Photo.new(photo_params)
+      @cameras = Camera.where(user_id: current_user.id)
       render 'new'
     end
   end
@@ -47,6 +49,7 @@ class Users::PhotosController < ApplicationController
     if photo.update(photo_params)
       redirect_to photo_path(photo)
     else
+      @cameras = Camera.where(user_id: current_user.id)
       render 'edit'
     end
   end

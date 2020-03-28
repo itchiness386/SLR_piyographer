@@ -5,8 +5,13 @@ class Users::PhotoCommentsController < ApplicationController
     comment = PhotoComment.new(photo_comment_params)
     comment.user_id = current_user.id
     comment.photo_id = photo.id
-    comment.save
-    redirect_to photo_path(photo)
+    if comment.save
+      redirect_to photo_path(photo)
+    else
+      @photo = Photo.find(params[:photo_id])
+      @photo_comment = PhotoComment.new(photo_comment_params)
+      render 'users/photos/show'
+    end
   end
 
   def destroy
