@@ -61,9 +61,12 @@
                   いいね <%= @photo.favorites.count %> 件
               <% end %>
             </div>
-            <br>
-            <%= link_to '編集', edit_photo_path(@photo), class: "btn btn-outline-success btn-sm col-5 offset-1" %>
-            <%= link_to '削除', photo_path(@photo), method: :delete, class: "btn btn-outline-danger btn-sm col-5" %>
+
+            <% if @photo.user == current_user %>
+              <br>
+              <%= link_to '編集', edit_photo_path(@photo), class: "btn btn-outline-success btn-sm col-5 offset-1" %>
+              <%= link_to '削除', photo_path(@photo), method: :delete, class: "btn btn-outline-danger btn-sm col-5" %>
+            <% end %>
           </div>
 
           <div class="col-7">
