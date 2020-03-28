@@ -1,4 +1,54 @@
 <%= render 'layouts/admins_header' %>
 
-<h1>Admins::Home#top</h1>
-<p>Find me in app/views/admins/home/top.html.erb</p>
+<div class="body">
+  <div class="container">
+
+      <h3>本日のデータ</h3>
+
+      <div class="row">
+        <div class="col-12">
+
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="nav-user-tab" data-toggle="tab" href="#nav-user" role="tab" aria-controls="nav-user" aria-selected="true">新規ユーザ数 <span class="badge badge-success"><%= @users_count %></span></a>
+              <a class="nav-item nav-link" id="nav-photo-tab" data-toggle="tab" href="#nav-photo" role="tab" aria-controls="nav-photo" aria-selected="false">新規投稿数 <span class="badge badge-success"><%= @photos_count %></span></a>
+            </div>
+          </nav>
+
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane active" id="nav-user" role="tabpanel" aria-labelledby="nav-user-tab">
+              <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th>ユーザID</th>
+                    <th>ユーザ名</th>
+                    <th>メールアドレス</th>
+                    <th>ステータス</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @users.each do |user| %>
+                    <tr>
+                      <td><%= user.id %></td>
+                      <td><%= link_to user.name, admins_user_path(user) %></td>
+                      <td><%= user.email %></td>
+                      <td><%= user.status %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane" id="nav-photo" role="tabpanel" aria-labelledby="nav-photo-tab">
+              <% @photos.each do |photo| %>
+                <%= link_to admins_photo_path(photo) do %>
+                  <%= attachment_image_tag photo, :image, :fill, 198, 132, fallback: "no_image_photo.jpg", class: "photo-index" %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+  </div>
+</div>
