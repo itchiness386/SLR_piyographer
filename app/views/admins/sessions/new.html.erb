@@ -3,6 +3,15 @@
 <div class="body">
   <div class="container">
 
+    <% if flash[:notice] %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= flash[:notice] %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
+
     <h3>ログイン</h3>
 
     <div class="row justify-content-center">
