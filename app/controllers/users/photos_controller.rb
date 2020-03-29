@@ -2,7 +2,7 @@ class Users::PhotosController < ApplicationController
 
   before_action :authenticate_user!
   before_action :corrent_user, only: [:edit, :update, :destroy]
-  before_action :deleted_photo, except: [:new]
+  before_action :deleted_photo, except: [:new, :create]
 
   def new
     @photo = Photo.new
