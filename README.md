@@ -1,6 +1,4 @@
-#名前
-
-SLR_piyographer
+# SLR_piyographer
 
 ## サイト概要
 「一眼レフを買ったはいいけど使い方がわからない」
