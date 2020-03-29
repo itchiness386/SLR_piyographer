@@ -36,6 +36,10 @@ class User < ApplicationRecord
     following_user.include?(user)
   end
 
+  def active_for_authentication?
+    super && self.status?
+  end
+
   def remember_me
     true
   end

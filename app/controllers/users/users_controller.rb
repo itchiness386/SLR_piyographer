@@ -2,11 +2,12 @@ class Users::UsersController < ApplicationController
 
   before_action :authenticate_user!
   before_action :corrent_user, only: [:edit, :update]
+  before_action :deleted_user
 
   def show
     @user = User.find(params[:id])
     impressionist(@user, nil)
-    @photos = Photo.where(user_id: @user.id).order(created_at: :desc)
+    @photos = Photo.where(user_id: @user.id, status: true).order(created_at: :desc)
   end
 
   def edit
@@ -43,6 +44,11 @@ class Users::UsersController < ApplicationController
   def corrent_user
     @user = User.find(params[:id])
     redirect_to user_path(current_user) unless @user == current_user
+  end
+
+  def deleted_user
+    @user = User.find(params[:id])
+    redirect_to user_path(current_user) unless @user.status == true
   end
 
 end

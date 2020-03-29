@@ -12,7 +12,7 @@ class Users::HomeController < ApplicationController
   end
 
   def ranking
-    @pv_ranks = User.order('impressions_count DESC').take(5)
+    @pv_ranks = User.where(status: true).order('impressions_count desc').take(5)
     @favo_ranks = Photo.find(Favorite.group(:photo_id).order('count(photo_id) desc').limit(5).pluck(:photo_id))
   end
 

@@ -2,6 +2,7 @@ class Users::PhotosController < ApplicationController
 
   before_action :authenticate_user!
   before_action :corrent_user, only: [:edit, :update, :destroy]
+  before_action :deleted_photo
 
   def new
     @photo = Photo.new
@@ -70,6 +71,11 @@ class Users::PhotosController < ApplicationController
   def corrent_user
     @photo = Photo.find(params[:id])
     redirect_to user_path(current_user) unless @photo.user_id == current_user.id
+  end
+
+  def deleted_photo
+    @photo = Photo.find(params[:id])
+    redirect_to user_path(current_user) unless @photo.status == true
   end
 
 end
