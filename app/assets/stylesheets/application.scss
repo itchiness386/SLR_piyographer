@@ -21,7 +21,7 @@
 
 body {
   font-size: 14px;
-  background-image: url(background-image.jpg);
+  background-image: image-url('background-image.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -81,7 +81,7 @@ h3 {
 }
 
 .jumbotron {
-  background-image: url("SLR.jpg");
+  background-image: image-url('SLR.jpg');
   background-size: cover;
   background-position: center 60%;
   margin-bottom: 0;
