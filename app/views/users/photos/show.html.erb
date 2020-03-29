@@ -3,6 +3,29 @@
 <div class="body">
 	<div class="container">
 
+    <% if flash[:notice] %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= flash[:notice] %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
+
+    <% if @comment.errors.any? %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong><%= @comment.errors.count %> 件のエラーがあります</strong>
+        <ul>
+          <% @comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
+
     <h3><%= @photo.user.name %></h3>
 
     <div class="row">
@@ -61,9 +84,12 @@
                   いいね <%= @photo.favorites.count %> 件
               <% end %>
             </div>
-            <br>
-            <%= link_to '編集', edit_photo_path(@photo), class: "btn btn-outline-success btn-sm col-5 offset-1" %>
-            <%= link_to '削除', photo_path(@photo), method: :delete, class: "btn btn-outline-danger btn-sm col-5" %>
+
+            <% if @photo.user == current_user %>
+              <br>
+              <%= link_to '編集', edit_photo_path(@photo), class: "btn btn-outline-success btn-sm col-5 offset-1" %>
+              <%= link_to '削除', photo_path(@photo), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger btn-sm col-5" %>
+            <% end %>
           </div>
 
           <div class="col-7">
@@ -106,6 +132,7 @@
 
         <div class="row">
           <div class="col-12">
+
             <table class="table">
               <% @photo.photo_comments.each do |photo_comment| %>
                 <tr>
@@ -121,22 +148,22 @@
                   <td class="align-middle"><%= photo_comment.created_at.strftime('%Y/%m/%d') %></td>
                   <td>
                     <% if photo_comment.user == current_user %>
-                      <%= link_to '×', photo_photo_comment_path(@photo, photo_comment), method: :delete, class: "btn btn-light btn-sm" %>
+                      <%= link_to '×', photo_photo_comment_path(@photo, photo_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-light btn-sm" %>
                     <% end %>
                   </td>
                 </tr>
               <% end %>
             </table>
 
-            <%= form_for [@photo, @photo_comment] do |f| %>
-                <div class="row align-items-end">
-                    <div class="col-11">
-                      <%= f.text_area :comment, rows:'4', class: "form-control" %>
-                    </div>
-                    <%= f.button :type => "submit", class: "btn btn-light rounded-circle p-0" do %>
-                      <i class="far fa-paper-plane"></i>
-                    <% end %>
+            <%= form_for [@photo, @comment] do |f| %>
+              <div class="row align-items-end">
+                <div class="col-11">
+                  <%= f.text_area :comment, rows:'4', class: "form-control" %>
                 </div>
+                <%= f.button :type => "submit", class: "btn btn-light rounded-circle p-0" do %>
+                  <i class="far fa-paper-plane"></i>
+                <% end %>
+              </div>
             <% end %>
           </div>
         </div>

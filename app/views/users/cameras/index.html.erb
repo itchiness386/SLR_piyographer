@@ -3,10 +3,35 @@
 <div class="body">
 	<div class="container">
 
-		<%= form_for(@camera) do |f| %>
-      <div class="row justify-content-center">
-        <div class="col-8">
-          <h4>カメラ情報登録</h4>
+    <% if flash[:notice] %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= flash[:notice] %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
+
+    <% if @camera.errors.any? %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong><%= @camera.errors.count %> 件のエラーがあります</strong>
+        <ul>
+          <% @camera.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
+
+    <div class="row justify-content-center">
+      <div class="col-8">
+
+        <h4>カメラ情報登録</h4>
+
+          <%= form_for(@camera) do |f| %>
             <table class="table">
               <tr>
                 <th>メーカー名</th>
@@ -21,9 +46,10 @@
             <div class="actions">
               <%= f.submit '登録', class: "btn btn-outline-success col-12" %>
             </div>
-        </div>
+          <% end %>
+
       </div>
-		<% end %>
+    </div>
 
     <div class="row justify-content-center camera-index">
       <div class="col-8">
@@ -39,11 +65,11 @@
           <tbody>
   					<% @cameras.each do |camera| %>
     					<tr>
-    						<td><%= camera.manufacturer %></td>
-    						<td><%= camera.modelname %></td>
+    						<td class="align-middle"><%= camera.manufacturer %></td>
+    						<td class="align-middle"><%= camera.modelname %></td>
     						<td>
                   <%= link_to "編集", edit_camera_path(camera), class: "btn btn-outline-success btn-sm col-4 offset-1" %>
-                  <%= link_to "削除", camera_path(camera), method: :delete, class: "btn btn-outline-danger btn-sm col-4 offset-2" %>
+                  <%= link_to "削除", camera_path(camera), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger btn-sm col-4 offset-2" %>
                 </td>
     					</tr>
   					<% end %>

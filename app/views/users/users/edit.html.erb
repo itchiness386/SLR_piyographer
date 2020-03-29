@@ -3,6 +3,20 @@
 <div class="body">
   <div class="container">
 
+    <% if @user.errors.any? %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong><%= @user.errors.count %> 件のエラーがあります</strong>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
+
     <%= form_for(@user) do |f| %>
       <div class="row">
         <div class="col-3">

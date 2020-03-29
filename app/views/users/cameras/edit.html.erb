@@ -3,10 +3,26 @@
 <div class="body">
 	<div class="container">
 
-		<%= form_for(@camera) do |f| %>
-      <div class="row justify-content-center">
-        <div class="col-8">
-          <h4>カメラ情報登録</h4>
+    <% if @camera.errors.any? %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong><%= @camera.errors.count %> 件のエラーがあります</strong>
+        <ul>
+          <% @camera.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
+
+    <div class="row justify-content-center">
+      <div class="col-8">
+
+        <h4>カメラ情報登録</h4>
+
+      		<%= form_for(@camera) do |f| %>
             <table class="table">
               <tr>
                 <th>メーカー名</th>
@@ -21,9 +37,10 @@
             <div class="actions">
               <%= f.submit '保存', class: "btn btn-outline-success col-12" %>
             </div>
-        </div>
+          <% end %>
+
       </div>
-		<% end %>
+    </div>
 
 　</div>
 </div>

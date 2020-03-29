@@ -1,4 +1,44 @@
 <%= render 'layouts/users_header' %>
 
-<h1>Users::Home#top</h1>
-<p>Find me in app/views/users/home/top.html.erb</p>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container text-right">
+    <h1 class="display-4" style="color:#ffffff;">SLR piyographer</h1>
+    <p class="lead" style="color:#ffffff;">一眼レフ初心者のための画像投稿サイト</p>
+    <div class="top-box">
+      <h4>SLRとは</h4>
+      <p>Single Lens Reflex の略で"一眼レフ"のこと<br>
+          デジタル一眼レフはDSLR(Digital Single Lens Reflex)と略されます</p>
+    </div>
+  </div>
+</div>
+
+<div class="body">
+  <div class="container">
+
+    <% if flash[:notice] %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= flash[:notice] %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
+
+    <div class="row justify-content-center">
+      <div class="col-7">
+        <div>
+          <p class="top-title">初心者(piyographer)脱出を目指して</p>
+          <p> 「一眼レフを買ったはいいけど使い方がわからない」<br>
+              「せっかくの機能を生かしきれない」<br>
+              「結局オートモードでしか撮影していない」<br>
+              「もっと本格的な写真を撮れるようになりたい」などなど...<br>
+               <br>
+              お悩みを抱えている方々が一緒に撮影技術を磨いていく場として、このサイトをご活用ください！</p>
+        </div>
+      </div>
+      <div class="col-2">
+        <img alt="ひよこ" src="/assets/piyo.png" width="197" height=186>
+      </div>
+    </div>
+  </div>
+</div>

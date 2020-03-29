@@ -60,12 +60,60 @@ h3 {
   border-radius: 6px;
 }
 
+#error_explanation {
+  color: #ff616b;
+}
+
+#error_explanation p {
+  margin-bottom: 0;
+}
+
+#success_explanation {
+  color: #28a745;
+}
+
 #image_btn {
   display: none !important;
 }
 
 #image_view {
   text-align: center;
+}
+
+.jumbotron {
+  background-image: url("SLR.jpg");
+  background-size: cover;
+  background-position: center 60%;
+  margin-bottom: 0;
+}
+
+.top-box {
+  width: 40%;
+  margin: 0 0 0 auto;
+  padding: 0.5em 1em;
+  color: #232323;
+  background: #fff8e8;
+  border-right: solid 10px #ffc06e;
+}
+
+.top-box p {
+  margin-bottom: 0;
+}
+
+.top-title {
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.tab-content {
+  border-left: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  background-color: #fff;
+  padding: 1rem;
 }
 
 .button-group {

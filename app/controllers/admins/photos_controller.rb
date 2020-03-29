@@ -1,5 +1,7 @@
 class Admins::PhotosController < ApplicationController
 
+  before_action :authenticate_admin!
+
   def index
   	@photos = Photo.order(created_at: :desc)
   end
@@ -16,6 +18,7 @@ class Admins::PhotosController < ApplicationController
   	photo = Photo.find(params[:id])
     if photo.update(photo_params)
       redirect_to admins_photo_path(photo)
+      flash[:notice] = "投稿のステータス情報を更新しました"
     else
       render 'edit'
     end
