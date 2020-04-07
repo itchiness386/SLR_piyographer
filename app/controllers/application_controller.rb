@@ -3,8 +3,10 @@ class ApplicationController < ActionController::Base
   before_action :set_search
 
   def set_search
-    @search = User.ransack(params[:q])
-    @search_results = @search.result
+    @user_search = User.ransack(params[:q])
+    @user_search_results = @user_search.result(distinct: true)
+    @photo_search = Photo.ransack(params[:q])
+    @photo_search_results = @photo_search.result(distinct: true).includes(:tags)
   end
 
   private

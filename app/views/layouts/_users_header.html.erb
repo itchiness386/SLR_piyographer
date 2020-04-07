@@ -9,10 +9,34 @@
   </button>
 
   <% if user_signed_in? %>
-    <%= search_form_for @search, url: results_path do |f| %>
-      <%= f.text_field :name_cont, placeholder: 'ユーザ名', class: "search-box" %>
-      <%= f.submit '検索', class: 'btn btn-outline-success btn-sm'%>
-    <% end %>
+    <div class="dropdown">
+      <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        検索メニュー
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li class="dropdown-item">
+          ユーザ
+          <%= search_form_for @user_search, url: results_path do |f| %>
+            <%= f.text_field :name_cont, placeholder: 'ユーザ名 (例)maki', class: "search-box" %>
+            <%= f.submit '検索', class: 'btn btn-outline-success btn-sm'%>
+          <% end %>
+        </li>
+        <div class="dropdown-divider"></div>
+        <li class="dropdown-item">
+          投稿
+          <%= search_form_for @photo_search, url: results_path do |f| %>
+            <%= f.text_field :camera_cont, placeholder: 'カメラ (例)Canon', class: "search-box" %>
+            <%= f.submit '検索', class: 'btn btn-outline-success btn-sm'%>
+          <% end %>
+        </li>
+        <li class="dropdown-item">
+          <%= search_form_for @photo_search, url: results_path do |f| %>
+            <%= f.text_field :tags_name_cont, placeholder: 'タグ (例)bird', class: "search-box" %>
+            <%= f.submit '検索', class: 'btn btn-outline-success btn-sm'%>
+          <% end %>
+        </li>
+      </ul>
+    </div>
 
     <div class="collapse navbar-collapse justify-content-end" id="Navber">
       <ul class="navbar-nav">
