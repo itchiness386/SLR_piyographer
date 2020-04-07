@@ -3,13 +3,13 @@ require 'json'
 require 'net/https'
 module Vision
   class << self
-    def get_image_data(photo)
+    def get_image_data(image_file)
       api_url = "https://vision.googleapis.com/v1/images:annotate?key=#{ENV['GOOGLE_VISION_API_KEY']}"
       # 画像をbase64にエンコード
       if Rails.env.production?
-        base64_image = Base64.encode64(open("http://18.176.43.221#{photo.image_url}").read)
+        base64_image = Base64.encode64(open("http://18.176.43.221/public/uploads/#{image_file.id}").read)
       else
-        base64_image = Base64.encode64(open("#{Rails.root}/public/uploads/#{photo.image.id}").read)
+        base64_image = Base64.encode64(open("#{Rails.root}/public/uploads/#{image_file.id}").read)
       end
       # APIリクエスト用のJSONパラメータ
       params = {
