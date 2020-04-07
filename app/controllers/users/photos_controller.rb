@@ -20,6 +20,10 @@ class Users::PhotosController < ApplicationController
     end
 
     if @photo.save
+      tags = Vision.get_image_data(@photo.image)
+      tags.each do |tag|
+        @photo.tags.create(name: tag)
+      end
       redirect_to photo_path(@photo)
       flash[:notice] = "写真を投稿しました"
     else
