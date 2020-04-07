@@ -126,6 +126,14 @@
                 <th>ピント</th>
                 <td><%= @photo.focus %></td>
               </tr>
+              <tr>
+                <th>タグ</th>
+                <td>
+                  <% @photo.tags.each do |tag| %>
+                    <span class="badge badge-info"><%= tag.name %></span>
+                  <% end %>
+                </td>
+              </tr>
             </table>
           </div>
         </div>

@@ -3,10 +3,12 @@
 <div class="body">
   <div class="container">
 
-	    <h3>「<%= @keyword %>」の検索結果一覧</h3>
+    <% if params[:q][:name_cont].present? %>
+	    <h3>「<%= @user_keyword %>」の検索結果一覧</h3>
 
 	    <div class="row justify-content-center">
 	      <div class="col-12">
+
 	        <table class="table">
 	          <thead class="thead-light">
 	            <tr>
@@ -16,7 +18,7 @@
 	            </tr>
 	          </thead>
 	          <tbody>
-							<% @search_results.each do |search_result| %>
+							<% @user_search_results.each do |search_result| %>
 	              <tr>
 	                <td style="width:5%">
 	                  <%= link_to admins_user_path(search_result) do %>
@@ -36,10 +38,104 @@
 									</td>
 	              </tr>
 		          <% end %>
-	          </tbody>
-	        </table>
+        	  </tbody>
+        	</table>
+
 	      </div>
 	    </div>
+
+    <% elsif params[:q][:camera_cont].present? %>
+	    <h3>「<%= @camera_keyword %>」の検索結果一覧</h3>
+
+	    <div class="row justify-content-center">
+	      <div class="col-12">
+
+		      <table class="table">
+		        <thead class="thead-light">
+		          <tr>
+		            <th><i class="fas fa-camera"></i></th>
+		            <th><i class="far fa-image"></i></th>
+		            <th colspan="2"><i class="fas fa-user"></i></th>
+	              <th><i class="far fa-comment-dots"></i></th>
+		          </tr>
+		        </thead>
+		        <tbody>
+							<% @photo_search_results.each do |search_result| %>
+		            <tr>
+									<td class="align-middle" style="width:25%">
+										<%= search_result.camera %>
+									</td>
+		            	<td style="width:25%">
+		                <%= link_to admins_photo_path(search_result) do %>
+		                  <%= attachment_image_tag search_result, :image, :fill, 165, 110, fallback: "no_image_photo.jpg", size:'165x110' %>
+		                <% end %>
+		              </td>
+		              <td class="align-middle" style="width:5%">
+		                <%= link_to admins_user_path(search_result.user) do %>
+		                  <%= attachment_image_tag search_result.user, :profile_image, :fill, 35, 35, fallback: "no_image_user.jpg", size:'35x35' %>
+		                <% end %>
+		              </td>
+		              <td class="align-middle" style="width:10%">
+		              	<%= link_to search_result.user.name, admins_user_path(search_result.user) %>
+		              </td>
+									<td class="align-middle" style="width:35%">
+										<%= truncate(search_result.user.introduction, length: 28) %>
+									</td>
+		            </tr>
+		          <% end %>
+		    	  </tbody>
+		    	</table>
+
+	      </div>
+	    </div>
+
+  	<% elsif params[:q][:tags_name_cont].present? %>
+	    <h3>「<%= @tag_keyword %>」の検索結果一覧</h3>
+
+	    <div class="row justify-content-center">
+	      <div class="col-12">
+
+		      <table class="table">
+		        <thead class="thead-light">
+		          <tr>
+		            <th><i class="fas fa-tags"></i></th>
+		            <th><i class="far fa-image"></i></th>
+		            <th colspan="2"><i class="fas fa-user"></i></th>
+		            <th><i class="far fa-comment-dots"></i></th>
+		          </tr>
+		        </thead>
+		        <tbody>
+							<% @photo_search_results.each do |search_result| %>
+		            <tr>
+									<td class="align-middle" style="width:25%">
+	                  <% search_result.tags.each do |tag| %>
+	                    <span class="badge badge-info"><%= tag.name %></span>
+	                  <% end %>
+									</td>
+		            	<td style="width:25%">
+		                <%= link_to admins_photo_path(search_result) do %>
+		                  <%= attachment_image_tag search_result, :image, :fill, 165, 110, fallback: "no_image_photo.jpg", size:'165x110' %>
+		                <% end %>
+		              </td>
+		              <td class="align-middle" style="width:5%">
+		                <%= link_to admins_user_path(search_result.user) do %>
+		                  <%= attachment_image_tag search_result.user, :profile_image, :fill, 35, 35, fallback: "no_image_user.jpg", size:'35x35' %>
+		                <% end %>
+		              </td>
+		              <td class="align-middle" style="width:10%">
+		              	<%= link_to search_result.user.name, admins_user_path(search_result.user) %>
+		              </td>
+									<td class="align-middle" style="width:35%">
+										<%= truncate(search_result.user.introduction, length: 28) %>
+									</td>
+		            </tr>
+		          <% end %>
+		    	  </tbody>
+		    	</table>
+
+	      </div>
+	    </div>
+    <% end %>
 
   </div>
 </div>
