@@ -7,7 +7,7 @@ module Vision
       api_url = "https://vision.googleapis.com/v1/images:annotate?key=#{ENV['GOOGLE_VISION_API_KEY']}"
       # 画像をbase64にエンコード
       if Rails.env.production?
-        base64_image = Base64.encode64(open("#{Rails.root}#{photo.image_url}").read)
+        base64_image = Base64.encode64(open("http://18.176.43.221#{photo.image_url}").read)
       else
         base64_image = Base64.encode64(open("#{Rails.root}/public/uploads/#{photo.image.id}").read)
       end
