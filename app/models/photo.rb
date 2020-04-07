@@ -5,6 +5,7 @@ class Photo < ApplicationRecord
   belongs_to :user
   has_many :photo_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :tags, dependent: :destroy
 
   validates :image, presence: true
   validates :date, presence: true
