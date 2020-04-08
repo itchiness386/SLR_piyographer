@@ -20,7 +20,7 @@ class Users::PhotosController < ApplicationController
     end
 
     if @photo.save
-      tags = Vision.get_image_data(@photo.image)
+      tags = Vision.get_image_data(@photo)
       tags.each do |tag|
         @photo.tags.create(name: tag)
       end
