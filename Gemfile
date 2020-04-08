@@ -66,6 +66,7 @@ gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+gem "refile-s3"
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'dotenv-rails'
 gem 'ransack'
